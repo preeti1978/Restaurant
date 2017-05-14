@@ -1,0 +1,65 @@
+div.container{
+	background-color: #EF5130;
+     background: linear-gradient(-90deg, white, #EF5130); /* Standard syntax */
+
+}
+
+.btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+   
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background-color: #E3EF30;
+    color: black;
+    font-weight: bolder;
+}
+
+
+.fa-facebook-square{
+   font-size:48px;
+   color:blue;
+     cursor: pointer;
+     background-color: none;
+
+
+} 
+
+.fa-linkedin-square{
+    font-size: 48px;
+    color:yellow;
+    cursor: pointer;
+    background-color: none;
+}
+
+.fa-twitter{
+    font-size: 48px;
+    color:#30ECEF;
+      cursor: pointer;
+      background-color: white;
+}
+
+footer{
+    left:30%;
+  
+}
+
+
+.sebm-google-map-container {
+  height: 300px;
+}
+
+#searchphrase{
+    color:green;
+    font-style: italic;
+    font-variant: text-shadow;
+}

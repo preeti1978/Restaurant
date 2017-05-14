@@ -1,0 +1,74 @@
+<!--importing library for the boorstrap font awesome icons-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="container">
+<div >
+<h1>
+ <span class="glyphicon glyphicon-cutlery"></span>&nbsp;&nbsp;{{title}}
+</h1>
+<!--The form containing text box and button-->
+<form #restForm="ngForm" (ngSubmit)="findMatch(restForm.value)">
+<div class="form-group">
+     <div class="row">
+     <div class="col-md-3"></div>
+     <div class="input-group col-md-6 col-sm-6 col-lg-6">     
+     <input name="restaurant" class="form-control" id="restaurant" placeholder="Type the city or restaurant"  required [(ngModel)]="searchphrase" (click)="clearAll()" (focus)="clearAll()">
+     <span class="input-group-btn">
+     		<button class="btn btn-default" type="submit" [disabled]="!restForm.form.valid">
+     		<span class="glyphicon glyphicon-search"></span>&nbsp;Find restaurant</button>
+     </span>
+     </div>
+     <div class="col-md-3"></div>
+     </div>
+ </div>
+</form>
+</div>
+</div>
+
+<!--If matching restaurants found, then display this all matching restaurants' details: Namae, address, directions, menu etc-->
+<div  *ngIf="matchingRestaurantsFound" class="container-fluid">
+	<h2>Search results for <span id="searchphrase">{{searchphrase}}</span></h2>
+	<table class="table table-striped">
+	<tr *ngFor="let matchingRestaurant of matchingRestaurants">
+	<td>
+	<div class="col-md-6">
+	<h3>{{matchingRestaurant.name}}</h3>
+	<span style="font-weight: bold">Address:</span>{{matchingRestaurant.address}}<br>
+	<span style="font-weight: bold">Directions:</span>{{matchingRestaurant.directions}}<br>
+	<span style="font-weight: bold">Hours of operation:</span> {{matchingRestaurant.hoursOfOperation}}<br>
+	<span style="font-weight: bold;">Cuisine:</span>{{matchingRestaurant.menu}}<br>
+	<a href="#">
+          <span class="glyphicon glyphicon-globe"></span>
+        </a><a target="_blank" href="{{matchingRestaurant.website}}">Website</a>,
+	<span style="font-weight: bold">Contact:</span>{{matchingRestaurant.contact}}<br>
+	{{matchingRestaurant.catering}},
+	{{matchingRestaurant.others}}
+	</div>
+	<div class="col-md-6" >
+	<!--map showing location of the restaurant with latitude amd longitude passed from the model-->
+     <sebm-google-map [latitude]=matchingRestaurant.lat [longitude]=matchingRestaurant.long><sebm-google-map-marker [latitude]=matchingRestaurant.lat [longitude]=matchingRestaurant.long></sebm-google-map-marker>
+     </sebm-google-map>
+
+     	</div>
+	</td>
+	</tr>
+	</table>
+
+</div>
+
+<!--display 'no match found' if find button is clicked and yet matchingRestaurants list is empty-->
+<div *ngIf="findButtonClicked" class="container-fluid">
+	<div *ngIf="!matchingRestaurantsFound">
+	  <h3><p align="center">No matching results for search phrase: <b>{{searchphrase}}</b></p></h3>
+	</div>
+</div>
+
+<!--footer displays all social media links of fb, twitter , linkedin-->
+<footer>
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<a href="http://fb.com" target="_blank"><span class="fa fa-facebook-square" title="Follow us on facebook"  ></span></a>&nbsp;
+<a href="http://linkedin.com" target="_blank"><span class="fa fa-linkedin-square" title="Follow us on Linked In" ></span></a>&nbsp;
+<a href="http://twitter.com" target="_blank"><span class="fa fa-twitter" title="Follow us on twitter"></span></a>
+</div>
+<div class="col-md-4"></div>
+</footer>
